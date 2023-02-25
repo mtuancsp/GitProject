@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Máy Tính</title>
+</head>
+<body>
+<h1>Máy tính đơn giản</h1>
+
+<label for="num1">Số thứ nhất:</label>
+<input type="number" id="num1">
+
+<br>
+
+<label for="num2">Số thứ hai:</label>
+<input type="number" id="num2">
+
+<br>
+
+<button onclick="Tong()">+</button>
+<button onclick="Hieu()">-</button>
+<button onclick="Tich()">*</button>
+<button onclick="Thuong()">/</button>
+
+<br>
+
+<label for="result">Kết quả:</label>
+<input type="number" id="result" readonly>
+
+<script>
+    function Tong() {
+        let num1 = parseFloat(document.getElementById("num1").value);
+        let num2 = parseFloat(document.getElementById("num2").value);
+        document.getElementById("result").value = num1 + num2;
+    }
+
+    function Hieu() {
+        let num1 = parseFloat(document.getElementById("num1").value);
+        let num2 = parseFloat(document.getElementById("num2").value);
+        document.getElementById("result").value = num1 - num2;
+    }
+
+    function Tich() {
+        let num1 = parseInt(document.getElementById("num1").value);
+        let num2 = parseInt(document.getElementById("num2").value);
+        document.getElementById("result").value = num1 * num2;
+    }
+
+    function Thuong() {
+        let num1 = parseFloat(document.getElementById("num1").value);
+        let num2 = parseFloat(document.getElementById("num2").value);
+        document.getElementById("result").value = num1 / num2;
+    }
+</script>
+
+</body>
+</html>
