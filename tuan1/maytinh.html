@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   <title>Calculator</title>
+
+  <style>
+    input {
+      font-size: 200%;
+      width: 430px;
+      height: 50px;
+      border: none;
+      background-color: #eee;
+      color: #333;
+    }
+    button {
+       width: 50px;
+       height: 50px;
+       margin: 5px;
+       font-size: 20px;
+       border-radius: 50%;
+       border: none;
+       background-color: #eee;
+       color: #333;
+       cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <input type="text" id="result" readonly>
+</div>
+<div>
+  <button onclick="insert('1')">1</button>
+  <button onclick="insert('2')">2</button>
+  <button onclick="insert('3')">3</button>
+  <button onclick="insert('+')">+</button>
+  <button onclick="insert('-')">-</button>
+  <button onclick="del()">Del</button>
+  <button onclick="clearInput()">AC</button>
+</div>
+<div>
+  <button onclick="insert('4')">4</button>
+  <button onclick="insert('5')">5</button>
+  <button onclick="insert('6')">6</button>
+  <button onclick="insert('*')">*</button>
+  <button onclick="insert('/')">/</button>
+  <button onclick="insert('log(')">Log</button>
+  <button onclick="insert('ln(')">Ln</button>
+
+</div>
+
+<div>
+  <button onclick="insert('7')">7</button>
+  <button onclick="insert('8')">8</button>
+  <button onclick="insert('9')">9</button>
+  <button onclick="insert('(')">(</button>
+  <button onclick="insert(')')">)</button>
+  <button onclick="insert('pow(x,n)')">X<sup>n</sup></button>
+  <button onclick="insert('sqrt(')">Căn</button>
+</div>
+  <button style="background-color: #007bff; color: white;" onclick="calculate()">=</button>
+  <button onclick="insert('0')">0</button>
+  <button onclick="insert('.')">.</button>
+  <button onclick="insert(',')">,</button>
+  <button onclick="insert('sin(')">Sin</button>
+  <button onclick="insert('cos(')">Cos</button>
+  <button onclick="insert('tan(')">Tan</button>
+
+
+
+<div>
+
+</div>
+<script>
+  let input = document.getElementById("result");
+
+  function insert(value) {
+    input.value += value;
+  }
+
+  function clearInput() {
+    input.value = "";
+  }
+
+  function del() {
+    input.value = (input.value).substring(0, (input.value).length - 1);
+  }
+
+  function calculate() {
+      // Thay thế các hàm bằng Math.sin, Math.cos, Math.sqrt, Math.pow,.....
+      input.value=(input.value).replace(/(sin|cos|tan)\(([^]+)\)/gi, "Math.$1(Math.PI/180*$2)");
+      input.value=(input.value).replace(/pow\(/g, "Math.pow(");
+      input.value=(input.value).replace(/sqrt\(/g, "Math.sqrt(");
+      input.value=(input.value).replace(/log\(/g, "Math.log10(");
+      input.value=(input.value).replace(/ln\(/g, "Math.log(");
+
+      // Tính toán kết quả cuối cùng bằng eval()
+      input.value = eval(input.value);
+  }
+
+</script>
+
+</body>
+</html>

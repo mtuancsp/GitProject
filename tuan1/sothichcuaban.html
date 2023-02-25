@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sở thích của bạn</title>
+  <style>
+    th {
+  background-color: #f54e00; color: white;
+  }
+    td {
+      color: orange;
+    }
+
+    .blue {
+      color: blue;
+    }
+    </style>
+</head>
+<body>
+<form action="http://demo.codegym.vn/6/registration_form/register.php" method="post">
+  <table>
+    <tr>
+      <th colspan="4">SỞ THÍCH CỦA BẠN</th>
+    </tr>
+    <tr>
+        <td  class="blue"><label for="name">Họ và tên </label></td>
+        <td colspan="2"><input type="text" id="name" name="name"></td>
+    </tr>
+    <tr>
+        <td  class="blue"><label for="email">Email </label></td>
+        <td colspan="2"><input type="text" id="email" name="email"></td>
+    </tr>
+    <tr>
+      <td class="blue">Sở thích</td>
+      <td><input type="checkbox" name="sothich" value="thể thao">Thể thao</td>
+      <td><input type="checkbox" name="sothich" value="âm nhạc">Âm nhạc</td>
+      <td><input type="checkbox" name="sothich" value="đọc sách">Đọc sách</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><input type="checkbox" name="sothich" value="Lướt web">Thể thao</td>
+      <td><input type="checkbox" name="sothich" value="Chơi game">Chơi game</td>
+      <td><input type="checkbox" name="sothich" value="Điện ảnh">Điện ảnh</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><input type="checkbox" name="sothich" value="Du lịch">Du lịch</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><input type="submit" value="Gửi thông tin"></td>
+      <td><input type="reset" value="Nhập lại"></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

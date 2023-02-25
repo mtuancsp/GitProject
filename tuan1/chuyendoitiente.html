@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chuyển đổi tiền tệ</title>
+    <style>
+        body {
+            font-family: "Times New Roman";
+        }
+
+        p {
+            color: #1418f5
+        }
+
+        button {
+            color: white;
+            background-color: mediumslateblue;
+            border-color: #165ef5;
+        }
+
+        table {
+            text-align: center;
+            width: 40%
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tr>
+        <th><label for="amount">Amount</label></th>
+        <th><label for="from">From Currency</label></th>
+        <th><label for="to">To Currency</label></th>
+        <td></td>
+    </tr>
+    <tr>
+        <td><input type="text" id="amount"></td>
+        <td><select name="currency" id="from">
+            <option value="vn">Việt Nam</option>
+            <option value="tq">Trung Quốc</option>
+            <option value="nb">Nhật Bản</option>
+        </select></td>
+        <td><select name="currency" id="to">
+            <option value="usa">USD</option>
+            <option value="tq">Trung Quốc</option>
+            <option value="nb">Nhật Bản</option>
+        </select></td>
+        <td>
+            <button type="button" onclick="convert()"><b>Convert</b></button>
+        </td>
+    </tr>
+</table>
+<p id="result"></p>
+<script>
+    function convert() {
+        let inputNumber = parseFloat(document.getElementById("amount").value);
+        let result = (inputNumber / 23000).toFixed(2);
+        document.getElementById("result").innerHTML = "Result: " + result;
+    }
+</script>
+</body>
+</html>
