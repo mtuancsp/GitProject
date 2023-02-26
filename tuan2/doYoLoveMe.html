@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    body {
+      background-color: pink;
+      text-align: center;
+    }
+
+    h1 {
+      font: 58px Arial, sans-serif;
+      color: red;
+    }
+
+    #yes {
+      background-color: #00bfff;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      border: none;
+    }
+
+    #no {
+      position: absolute;
+      background-color: #ff69b4;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+<h1><b>Do you love me S2</b></h1>
+<button id="yes" onclick="yes()">YES</button>
+<button id="no" onmouseover="no()">NO</button>
+
+<script>
+  function yes(){
+    alert('<3 Mãi yêu <3');
+  }
+  function  no(){
+    let x = Math.random() * window.innerWidth ;
+    let y = Math.random() * window.innerHeight ;
+    document.getElementById('no').style.left = x + 'px' ;
+    document.getElementById('no').style.top = y + 'px' ;
+  }
+</script>
+</body>
+</html>
