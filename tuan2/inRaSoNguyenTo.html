@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
 
+<script>
+  function isPrime(num) {
+    for(let i = 2; i <= Math.sqrt(n); i++) {
+      if(num % i === 0) {
+        return false;
+      }
+    }
+    return num !== 1;
+  }
+
+  let n = prompt('Bạn muốn in ra bao nhiêu số nguyên tố đầu tiên');
+  let count = 0;
+  let num = 2;
+
+  while (count < n) {
+    if (isPrime(num)) {
+      document.write(num + '<br>');
+      count++;
+    }
+    num++;
+  }
+
+</script>
 </body>
 </html>
