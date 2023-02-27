@@ -25,27 +25,27 @@
 <script>
   let ball = document.getElementById("myImage");
   ball.style.position = 'relative';
-  let positionX = 0;
-  let positionY = 0;
+  let X = 0;
+  let Y = 0;
   let step = 20;
 
   function moveImage(direction) {
     switch (direction) {
       case 'left':
-        positionX -= step;
+        X -= step;
         break;
       case 'right':
-        positionX += step;
+        X += step;
         break;
       case 'up':
-        positionY -= step;
+        Y -= step;
         break;
       case 'down':
-        positionY += step;
+        Y += step;
         break;
     }
-    ball.style.left = positionX + "px";
-    ball.style.top = positionY + "px";
+    ball.style.left = X + "px";
+    ball.style.top = Y + "px";
   }
 </script>
 </body>

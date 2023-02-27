@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img id="nobita" alt="Nobita" src="https://upload.wikimedia.org/wikipedia/vi/2/2c/Nobita.png" style="position:absolute;left:0; top:0;" height="100" width="80"/>
+
+<script>  let element = document.getElementById("nobita");
+element.style.position = 'relative';
+let X = 0;
+let Y = 0;
+let step = 20;
+
+function moveElement(direction) {
+  switch (direction) {
+    case 'ArrowLeft':
+      X -= step;
+      break;
+    case 'ArrowRight':
+      X += step;
+      break;
+    case 'ArrowUp':
+      Y -= step;
+      break;
+    case 'ArrowDown':
+      Y += step;
+      break;
+  }
+  element.style.left = X + "px";
+  element.style.top = Y + "px";
+}
+
+document.addEventListener('keydown', function(event) {
+  moveElement(event.key);
+});</script>
+</body>
+</html>

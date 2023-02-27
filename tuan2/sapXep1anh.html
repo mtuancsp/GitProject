@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Puzzle Game</title>
+
+    <style>
+        h2{
+            color: #d61b06;
+        }
+        #puzzle {
+            display: flex;
+            flex-direction: column;
+            max-width: 415px;
+            max-height: 300px;
+        }
+    </style>
+</head>
+
+<!--khi vừa load trang di chuyển ngẫu nhiên 1 part để xáo trộn hìhh ảnh-->
+<body onload="movePart(randomPart)">
+
+<div id="puzzle">
+    <img id="part1" src="part1.png" alt="part1" onclick="movePart('part1')">
+    <img id="part2" src="part2.png" alt="part2" onclick="movePart('part2')">
+    <img id="part3" src="part3.png" alt="part3" onclick="movePart('part3')">
+</div>
+    <h2 id="result"></h2>
+
+<script>
+    let parts = ["part1", "part2", "part3"];
+    let currentPosition = {part1: 1, part2: 2, part3: 3};
+
+    // lấy một part ngẫu nhiên để xáo trộn hình khi trang vừa load
+    let randomIndex = Math.floor(Math.random() * parts.length); //hàm random
+    let randomPart = parts[randomIndex];
+    // code này tổng quát cho mảng n phần tử
+    function movePart(partId) {
+        // Tìm phần ảnh tiếp theo
+        let nextPosition = currentPosition[partId] + 1;
+        if (nextPosition > 3) {
+            nextPosition = 1;
+        }
+        // Hoán đổi vị trí giữa phần ảnh hiện tại và phần ảnh tiếp theo
+        let nextPartId = "part" + nextPosition;
+        let currentPart = document.getElementById(partId);
+        let nextPart = document.getElementById(nextPartId);
+        let temp = currentPart.src;
+        currentPart.src = nextPart.src;
+        nextPart.src = temp;
+        currentPosition[partId] = nextPosition;
+
+        // Kiểm tra xem trò chơi đã kết thúc chưa
+        checkGameOver();
+    }
+
+    function checkGameOver() {
+        // Kiểm tra xem các phần ảnh đã được ghép lại thành một bức tranh chưa
+        let isGameOver = true;
+        let part1src = document.getElementById("part1").src;
+        let part2src = document.getElementById("part2").src;
+        let part3src = document.getElementById("part3").src;
+
+        // phần này đơn giản thì là part1src !== "part1.png" nhưng k chạy nên phải dùng indexOf
+        if (part1src.indexOf("part1.png") === -1 || part2src.indexOf("part2.png") === -1 || part3src.indexOf("part3.png") === -1) {
+            isGameOver = false;
+        }
+
+        // Hiển thị thông báo nếu trò chơi đã kết thúc
+        if (isGameOver) {
+            document.getElementById("result").innerHTML="Chúc mừng bạn đã hoàn thành trò chơi!";
+        }
+    }
+
+</script>
+</body>
+</html>

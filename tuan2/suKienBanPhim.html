@@ -5,12 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-<img id="nobita" alt="Nobita" src="https://upload.wikimedia.org/wikipedia/vi/2/2c/Nobita.png" style="position:absolute;left:0; top:0;" height="100" width="80"/>
+<img id="nobita" alt="Nobita" src="https://upload.wikimedia.org/wikipedia/vi/2/2c/Nobita.png" style="position:relative;left:0; top:0;" height="100" width="80"/>
 
 <script>
   let element = document.getElementById("nobita");
-  element.style.left = "0px";
-  element.style.top = "0px";
 
   document.addEventListener('keydown', function(event) {
     switch (event.key) {
@@ -35,7 +33,7 @@
 //   let X = 0;
 //   let Y = 0;
 //   let step = 20;
-
+//
 //   function moveElement(direction) {
 //       switch (direction) {
 //           case 'ArrowLeft':
