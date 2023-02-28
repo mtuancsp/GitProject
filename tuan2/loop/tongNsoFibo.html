@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  function sumFibonacciNumbers(n) {
+    let a = 1;
+    let b = 1;
+    let c;
+    let sum=a+b;
+
+    for (let i = 3; i <= n; i++) {
+      c = a + b;
+      sum += c;
+      a = b;
+      b = c;
+    }
+    return sum;
+  }
+
+  let n = +prompt('Nhap n');
+  alert(sumFibonacciNumbers(n));
+</script>
+</body>
+</html>

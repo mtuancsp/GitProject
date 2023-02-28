@@ -7,13 +7,16 @@
 <body>
 
 <script>
+
+
+
   function isPrime(num) {
-    for(let i = 2; i <= Math.sqrt(n); i++) {
+    for(let i = 2; i*i<=n; i++) {
       if(num % i === 0) {
         return false;
       }
     }
-    return num !== 1;
+    return num;
   }
 
   let n = prompt('Bạn muốn in ra bao nhiêu số nguyên tố đầu tiên');

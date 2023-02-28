@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="doanso()">Bắt đầu</button>
+<script>
+  function doanso() {
+    let limit = +prompt("Nhập giới hạn của khoảng số muốn đoán:");
+    let random = Math.floor(Math.random() * limit);
+    let guess = +prompt("Nhập giá trị bạn đoán:");
+    let count = 1;
+    while (guess !== random && count < 3) {
+      if (guess > random) {
+        guess = prompt("Giá trị bạn đoán lớn hơn số ngẫu nhiên, vui lòng đoán lại:");
+      }
+      else if (guess < random) {
+        guess = prompt("Giá trị bán đoán bé hơn số ngẫu nhiên, vui lòng đoán lại:");
+      }
+      count++;
+    }
+    if (count === 3) {
+      alert("Bạn đã hết số lần đoán, số ngẫu nhiên là: " + random);
+    } else {
+      alert("Chúc mừng, bạn đã đoán đúng số ngẫu nhiên là: " + random);
+    }
+
+  }
+</script>
+</body>
+</html>

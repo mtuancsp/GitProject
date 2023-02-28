@@ -60,8 +60,9 @@
 
     window.onload = function() {
         for (let i = 1; i <= 5; i++) {
-            let randomNum = Math.floor(Math.random() * 3);
-            placeImage(i, randomNum);
+                let randomNum = Math.floor(Math.random() * 3);
+                placeImage(i, randomNum);
+
             let img = document.getElementById("img" + i);
             img.addEventListener("click", function() {
                 imageClick(i);

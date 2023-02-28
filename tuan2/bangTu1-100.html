@@ -7,18 +7,25 @@
 <body>
 
 <script>
-  let sout = "<table border='1'>";
+  // let sout = "<table border='1'>";
+  //
+  // for (let i = 1; i <= 10; i++) {
+  //   sout += "<tr>";
+  //   for (let j = 1; j <= 10; j++) {
+  //     sout += "<td>" + ((i-1)*10+j) + "</td>";
+  //   }
+  //   sout += "</tr>";
+  // }
+  //
+  // sout += "</table>";
+  // console.log(sout);
+  // document.write(sout);
 
-  for (let i = 1; i <= 10; i++) {
-    sout += "<tr>";
-    for (let j = 1; j <= 10; j++) {
-      sout += "<td>" + ((i-1)*10+j) + "</td>";
-    }
-    sout += "</tr>";
+  let x = 1;
+  for (let i = 0; i < -1; i=i-3) {
+    x = x + 1;
   }
-
-  sout += "</table>";
-  document.write(sout);
+  console.log(x);
 </script>
 </body>
 </html>
