@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body><h1>Tính lãi ngân hàng</h1>
+<script>
+  let loan = +prompt('Nhập số tiền vay (triệu đồng): ');
+  let time = +prompt('Số tháng vay: ');
+  let interestRate = +prompt('Lãi suất hàng tháng(%):')
+  let interest = loan;
+
+  for(let i=1;i<=time;i++){
+    loan = loan + loan*(interestRate/100)
+  }
+  interest = loan - interest;
+  alert('Tiền lãi bạn phải trả là '+interest.toFixed(2)+' triệu động');
+</script>
+</body>
+</html>

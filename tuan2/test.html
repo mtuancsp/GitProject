@@ -1,0 +1,37 @@
+<body>
+<h1></h1>
+<div class="mt-android">
+    <input id="good" type="checkbox" name="switch" onclick="updateCheckboxes()">
+    <label for="good"><b>GOOD</b></label>
+</div>
+<br><br><br>
+<div class="mt-android-indigo">
+    <input id="cheap" type="checkbox" name="switch" onclick="updateCheckboxes()">
+    <label for="cheap"><b>CHEAP</b></label>
+</div>
+<br><br><br>
+<div class="mt-android-orange">
+    <input id="fast" type="checkbox" name="switch" onclick="updateCheckboxes()">
+    <label for="fast"><b>FAST</b></label>
+</div>
+
+<script>
+    function updateCheckboxes() {
+        let good = document.getElementById("good");
+        let cheap = document.getElementById("cheap");
+        let fast = document.getElementById("fast");
+
+        if (good.checked && cheap.checked) {
+            fast.checked = false;
+        }
+
+        if (fast.checked && cheap.checked) {
+            good.checked = false;
+        }
+
+        if (fast.checked && good.checked) {
+            cheap.checked = false;
+        }
+    }
+</script>
+</body>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // Hinh 1
+    // let n = 5;
+    // for (let i = 1; i <= 5; i++) {
+    //     for (let j = 1; j <= i; j++) {
+    //         document.write('*')
+    //     }
+    //     document.write('<br>')
+    // }
+
+
+    //Hình 2
+    // let n = 5;
+    // for (let i = 5; i >=1 ; i--) {
+    //     for (let j = i; j>=1 ; j--) {
+    //         document.write('*')
+    //     }
+    //     document.write('<br>')
+    // }
+
+    // Hình 3
+    // let n = 5;
+    // for (let i = 1; i <=5 ; i++) {
+    //     for (let j = 1; j<=5 ; j++) {
+    //         if(i+j<6){
+    //             document.write("&nbsp; ");
+    //         }else{
+    //             document.write("*");
+    //         }
+    //     }
+    //     document.write('<br>')
+    // }
+
+    //Hình 4
+    // let n = 5;
+    // for (let i = 1; i <=5 ; i++) {
+    //     for (let j = 1; j<=5 ; j++) {
+    //         if(i>j){
+    //             document.write("&nbsp; ");
+    //         }else{
+    //             document.write("*");
+    //         }
+    //     }
+    //     document.write('<br>')
+    // }
+
+    // Hình 5
+    let n = 5;
+    for (let i = 1; i <=7 ; i++) {
+        for (let j = 1; j<=20 ; j++) {
+            if(i===1 || i===7 || j===1 || j===20 ){
+                document.write("*");
+            }else{
+                document.write("&nbsp; ");
+            }
+        }
+        document.write('<br>')
+    }
+
+
+</script>
+</body>
+</html>

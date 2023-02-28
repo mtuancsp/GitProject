@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  function tinhGiaiThua(n) {
+    let giaiThua = 1;
+    for (let i = 1; i <= n; i++) {
+      giaiThua *= i;
+    }
+    if (n === 0) {
+      giaiThua = 1;
+    }
+    return giaiThua;
+  }
+  let n = prompt('Nhập số n muốn tính giai thừa');
+  alert(tinhGiaiThua(n));
+</script>
+</body>
+</html>
