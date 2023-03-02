@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  let str = prompt("Nhập chuỗi cần chuyển đổi: ");
+  let result = "";
+
+  for (let i = 0; i < str.length; i++) {
+    let char = str.charAt(i);
+    if (char === char.toUpperCase()) {
+      result += char.toLowerCase();
+    } else {
+      result += char.toUpperCase();
+    }
+  }
+
+  document.write(str + '<br>');
+  document.write(result);
+
+</script>
+</body>
+</html>

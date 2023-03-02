@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+            font-size: 30px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body onload="setup()">
+<script>
+    //setup bàn cờ
+    function setup() {
+        let board = "<table>";
+        for (let i = 0; i < 15; i++) {
+            board += "<tr>";
+            for (let j = 0; j < 30; j++) {
+                board += `<td id="${i}_${j}" onclick="xclick(this)"></td>`;
+            }
+            board += "</tr>";
+        }
+        board += "</table>";
+        document.body.innerHTML = board;
+    }
+
+    //tạo mảng 2 chiều để lưu giá trị hàng và cột
+    let currentPlayer = "X";
+    let board = [];
+    for (let i = 0; i < 15; i++) {
+        board[i] = [];
+        for (let j = 0; j < 30; j++) {
+            board[i][j] = "";
+        }
+    }
+
+
+    function switchPlayer() {
+        if (currentPlayer === "X") {
+            currentPlayer = "O";
+        } else {
+            currentPlayer = "X";
+        }
+    }
+
+    function checkWin(row, col) {
+        // Check theo hàng
+        let count = 0;
+        let winCells = [];
+        for (let j = 0; j < 30; j++) {
+            if (board[row][j] === currentPlayer) {
+                count++;
+                winCells.push({row: row, col: j});
+                if (count === 5) {
+                    highlightCells(winCells);
+                    return true;
+                }
+            } else {
+                count = 0;
+                winCells = [];
+            }
+        }
+
+        // Check theo cột
+        count = 0;
+        winCells = [];
+        for (let i = 0; i < 15; i++) {
+            if (board[i][col] === currentPlayer) {
+                count++;
+                winCells.push({row: i, col: col});
+                if (count === 5) {
+                    highlightCells(winCells);
+                    return true;
+                }
+            } else {
+                count = 0;
+                winCells = [];
+            }
+        }
+
+        // Check đường chéo chính
+        count = 0;
+        winCells = [];
+        let i = row;
+        let j = col;
+        while (i > 0 && j > 0) {
+            i--;
+            j--;
+        }
+        while (i < 15 && j < 30) {
+            if (board[i][j] === currentPlayer) {
+                count++;
+                winCells.push({row: i, col: j});
+                if (count === 5) {
+                    highlightCells(winCells);
+                    return true;
+                }
+            } else {
+                count = 0;
+                winCells = [];
+            }
+            i++;
+            j++;
+        }
+
+        // Check đường chéo phụ
+        count = 0;
+        winCells = [];
+        i = row;
+        j = col;
+        while (i > 0 && j < 29) {
+            i--;
+            j++;
+        }
+        while (i < 15 && j >= 0) {
+            if (board[i][j] === currentPlayer) {
+                count++;
+                winCells.push({row: i, col: j});
+                if (count === 5) {
+                    highlightCells(winCells);
+                    return true;
+                }
+            } else {
+                count = 0;
+                winCells = [];
+            }
+            i++;
+            j--;
+        }
+
+        return false;
+    }
+    function highlightCells(cells) {
+        for (let cell of cells) {
+            const td = document.getElementById(`${cell.row}_${cell.col}`);
+            td.style.border = "3px solid red";
+        }
+    }
+
+
+
+    //Hàm main khi người chơi click vào các ô
+    function xclick(td) {
+        if (td.innerHTML === "") {
+            const row = td.parentNode.rowIndex; //row = chỉ số của <tr> tức là parentNode của td
+            const col = td.cellIndex;
+            board[row][col] = currentPlayer;
+            td.innerHTML = currentPlayer;
+            if (currentPlayer === "X") {
+                td.style.color = "blue";
+            } else {
+                td.style.color = "red";
+            }
+            if (checkWin(row, col)) {
+                alert(`${currentPlayer} has won!`);
+                resetBoard();
+            } else {
+                switchPlayer();
+            }
+        }
+    }
+
+    function resetBoard() {
+        board = [];
+        for (let i = 0; i < 15; i++) {
+            board[i] = [];
+            for (let j = 0; j < 30; j++) {
+                board[i][j] = "";
+            }
+        }
+        const tds = document.getElementsByTagName("td");
+        for (let i = 0; i < tds.length; i++) {
+            tds[i].innerHTML = "";
+            tds[i].style.color = "black";
+        }
+        currentPlayer = "X";
+    }
+
+</script>
+</body>
+</html>
