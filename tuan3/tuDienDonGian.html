@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  // Tạo 2 mảng lưu trữ danh sách từ tiếng Anh và tiếng Việt tương ứng
+  let englishWords = ["hello", "world", "computer", "science", "programming"];
+  let vietnameseWords = ["xin chào", "thế giới", "máy tính", "khoa học máy tính", "lập trình"];
+
+  // Hàm tìm kiếm từ và hiển thị từ tương ứng
+  function searchWord(word) {
+    let index = englishWords.indexOf(word);
+    if (index === -1) {
+      alert("Không tìm thấy từ!");
+    } else {
+      alert(" \'" + englishWords[index] + "\' có nghĩa là \'" + vietnameseWords[index] + "\' ");
+    }
+  }
+
+  let word = prompt('Nhập từ cần tìm kiếm')
+  searchWord(word)
+</script>
+</body>
+</html>
