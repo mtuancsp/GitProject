@@ -6,17 +6,26 @@
 </head>
 <body>
 <script>
-  for(let i=1;i<=100;i++){
-      if(i%15===0){
-          document.write('FizzBuzz <br>');
-      }else if(i%3===0){
-          document.write('Fizz <br>');
-      }else if(i%5===0){
-          document.write('Buzz <br>');
-      } else {
-          document.write(i + '<br>');
-      }
-  }
+    // for(let i=1;i<=100;i++){
+    //     // if(i%15===0){
+    //         console.log('FizzBuzz');
+    //     }else if(i%3===0){
+    //         console.log('Fizz');
+    //     }else if(i%5===0){
+    //         console.log('Buzz');
+    //     } else {
+    //         console.log(i);
+    //     }
+    // }
+
+    let ans = '';
+    for (let i = 1; i <= 100; i++) {
+        if (i % 3 === 0) ans += 'Fizz';
+        if (i % 5 === 0) ans += 'Buzz';
+        else ans = i;
+        console.log(ans);
+        ans = '';
+    }
 </script>
 </body>
 </html>

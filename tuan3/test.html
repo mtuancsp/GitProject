@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Caro Game</title>
 </head>
 <body>
-$END$
+
+<script>
+
+    function isPrimes(n) {
+        for (let i = 2; i < n; i++) {
+            if (n % i === 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    let count = 0;
+    for (let i = 2; count < 20; i++) {
+        if (isPrimes(i)) {
+            document.write(i + '<br>');
+            count++;
+        }
+    }
+
+
+
+</script>
+
 </body>
 </html>
