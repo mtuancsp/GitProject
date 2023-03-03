@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fun App</title>
+</head>
+<body>
+<label for="input">Typing slowly</label>
+<textarea id="input"></textarea>
+<script>
+  const input = document.getElementById('input');
+  const fixedText = "Tôi là một đứa ngốc!".split(' ');
+  let wordIndex = 0;
+
+  input.addEventListener('keydown', (event) => {
+    if (wordIndex < fixedText.length) {
+      input.value += fixedText[wordIndex] + ' ';
+      wordIndex++;
+    }
+    event.preventDefault();
+  });
+</script>
+</body>
+</html>
