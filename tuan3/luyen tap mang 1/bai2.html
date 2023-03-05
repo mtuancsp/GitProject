@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+  let n = prompt('Nhập số phần tử của mảng: ')
+  let arr = [];
+
+  for (let i = 0; i < n; i++){
+    arr.push(Math.floor(Math.random()*100));
+  }
+  console.log(arr)
+
+  let max = arr[0];
+  let pos = 0;
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > max) {
+      max = arr[i];
+      pos = i;
+    }
+  }
+
+  console.log("Giá trị của phần tử lớn nhất trong mảng là: " + max);
+  console.log("Vị trí của phần tử lớn nhất trong mảng là: " + pos);
+</script>
+</body>
+</html>

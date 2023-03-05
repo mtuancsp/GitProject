@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+  // Xây dựng hàm đếm số lượng nguyên âm trong 1 chuỗi
+  // function countVowels(str) {
+  //   // Chuyển đổi chuỗi thành toàn bộ chữ thường để đảm bảo tính nhất quán trong việc đếm
+  //   str = str.toLowerCase();
+  //
+  //   let count = 0;
+  //
+  //   for (let i = 0; i < str.length; i++) {
+  //
+  //     if (str[i] === 'a' || str[i] === 'e' || str[i] === 'i' || str[i] === 'o' || str[i] === 'u') {
+  //       count++;
+  //     }
+  //   }
+  //
+  //   return count;
+  // }
+  //
+  // let str = prompt('Nhập vào một chuỗi: ')
+  // console.log('Chuỗi bạn đã nhập vào: ' + str);
+  // console.log('Số lượng nguyên âm trong chuỗi là: ' + countVowels(str));
+
+  //Đếm nguyên âm trong tiếng Việt, không ăn thua vẫn còn thiếu :)))
+  function countVowels(str) {
+    // Chuyển đổi chuỗi thành chữ thường để đảm bảo tính nhất quán trong việc đếm
+    str = str.toLowerCase();
+
+    // Bộ kiểm tra chuỗi bao gồm các ký tự nguyên âm Tiếng Việt
+    const vowels = 'aeiouyăâêôơư';
+
+    // Khởi tạo biến đếm số nguyên âm
+    let count = 0;
+
+    // Duyệt từng ký tự trong chuỗi, nếu kí tự nào nằm trong vowels thì +1
+    for (let i = 0; i < str.length; i++) {
+      if (vowels.indexOf(str[i]) !== -1) {
+        count++;
+      }
+    }
+
+    return count;
+  }
+
+  let str = prompt('Nhập vào một chuỗi: ')
+  console.log('Chuỗi bạn đã nhập vào: ' + str);
+  console.log('Số lượng nguyên âm trong chuỗi là: ' + countVowels(str));
+
+
+</script>
+</body>
+</html>

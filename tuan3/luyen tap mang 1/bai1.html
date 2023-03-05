@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    let n = prompt('Nhập số phần tử của mảng: ')
+    let arr = [];
+
+    for (let i = 0; i < n; i++){
+        arr.push(Math.floor(Math.random()*2*10));
+    }
+    console.log(arr)
+
+    let count = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] >= 10) {
+            count++;
+            console.log(arr[i]);
+        }
+    }
+
+    console.log(`Có ${count} số nguyên lớn hơn hoặc bằng 10 trong mảng.`);
+
+
+</script>
+</body>
+</html>

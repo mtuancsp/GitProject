@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+  let n = prompt('Nhập số phần tử của mảng: ')
+  let arr = [];
+
+  for (let i = 0; i < n; i++){
+    arr.push(Math.floor(Math.random()*100));
+  }
+  console.log('Mảng ban đầu: ' + arr)
+
+  let arr2 = arr.reverse();
+  console.log('Mảng đảo ngước: ' + arr2)
+
+  // for (let i = 0; i < arr.length / 2; i++) {
+  //   let temp = arr[i];
+  //   arr[i] = arr[arr.length - 1 - i];
+  //   arr[arr.length - 1 - i] = temp;
+  // }
+
+</script>
+</body>
+</html>
