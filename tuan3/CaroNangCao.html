@@ -43,7 +43,8 @@
 
     </style>
 </head>
-<body onload="setup()">
+<body>
+
 <div id="container">
     <div id="board-container"></div>
     <div id="form-container">
@@ -61,28 +62,31 @@
 </body>
 <script>
     //setup bàn cờ
-    function setup() {
-        let board = "<table>";
-        for (let i = 0; i < 15; i++) {
-            board += "<tr>";
-            for (let j = 0; j < 20; j++) {
-                board += `<td id="${i}_${j}" onclick="xclick(this)"></td>`;
-            }
-            board += "</tr>";
-        }
-        board += "</table>";
-        document.getElementById('board-container').innerHTML = board;
-        setTimeout(() => alert(`Người chơi 1 đi trước!`), 200);
-    }
-
     //tạo mảng 2 chiều để lưu giá trị hàng và cột
-    let currentPlayer = "X";
     let board = [];
-    for (let i = 0; i < 15; i++) {
-        board[i] = [];
-        for (let j = 0; j < 20; j++) {
-            board[i][j] = "";
+    setArray()
+    function setArray(){
+        for (let i = 0; i < 15; i++) {
+            board[i] = [];
+            for (let j = 0; j < 20; j++) {
+                board[i][j] = "";
+            }
         }
+    }
+    setupBoard()
+    let currentPlayer = "X";
+    function setupBoard() {
+        let boards = "<table>";
+        for (let i = 0; i < 15; i++) {
+            boards += "<tr>";
+            for (let j = 0; j < 20; j++) {
+                boards += `<td id="${i}_${j}" onclick="xclick(this)"></td>`;
+            }
+            boards += "</tr>";
+        }
+        boards += "</table>";
+        document.getElementById('board-container').innerHTML = boards;
+        setTimeout(() => alert(`Người chơi ${currentPlayer} đi trước!`), 200);
     }
 
     function switchPlayer() {
@@ -205,11 +209,10 @@
 
                 if (currentPlayer === "X") {
                     document.getElementById("player1-wins").value = parseInt(document.getElementById("player1-wins").value) + 1;
-
                 } else {
                     document.getElementById("player2-wins").value = parseInt(document.getElementById("player2-wins").value) + 1;
-
                 }
+
             } else {
                 switchPlayer();
             }
@@ -217,28 +220,18 @@
     }
 
     function resetBoard() {
-        confirm('Bạn có muốn reset bàn cờ không ?!')
-        board = [];
-        for (let i = 0; i < 15; i++) {
-            board[i] = [];
-            for (let j = 0; j < 20; j++) {
-                board[i][j] = "";
-            }
+        if(confirm('Bạn có muốn tạo lại bàn cờ mới không ?!')){
+            switchPlayer();
+            setupBoard();
+            setArray();
         }
-        const tds = document.getElementsByTagName("td");
-        for (let i = 0; i < tds.length; i++) {
-            tds[i].innerHTML = "";
-            tds[i].style.color = "black";
-            tds[i].style.background = "white";
-        }
-        switchPlayer();
-        setTimeout(() => alert(`Người chơi ${currentPlayer} đi trước!`), 200);
     }
 
     function resetHistory() {
-        confirm("Bạn chắc chắn muốn xóa hết lịch sử chứ ?! ")
-        document.getElementById("player1-wins").value = 0;
-        document.getElementById("player2-wins").value = 0;
+        if(confirm("Bạn có chắc chắn muốn xóa hết lịch sử không?! ")){
+            document.getElementById("player1-wins").value = 0;
+            document.getElementById("player2-wins").value = 0;
+        }
     }
 
 </script>

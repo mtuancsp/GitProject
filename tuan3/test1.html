@@ -2,9 +2,254 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Title</title>
+  <style>
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    #container {
+      display: flex;
+      align-items: center;
+      padding: 40px;
+    }
+
+    #board-container {
+      margin-right: 40px;
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+
+    td {
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      border: 1px solid black;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 60px;
+    }
+
+    input[type="number"] {
+      width: 75px;
+    }
+
+  </style>
 </head>
 <body>
-$END$
+
+<div id="container">
+  <div id="board-container"></div>
+  <div id="form-container">
+    <form>
+      <h1>Cờ Caro</h1>
+      <label for="player1-wins" id="player1-label" style="color: blue">You win</label>
+      <input type="number" id="player1-wins" name="player1-wins" value="0"><br><br>
+      <label for="player2-wins" id="player2-label" style="color: red">Computer win</label>
+      <input type="number" id="player2-wins" name="player2-wins" value="0"><br><br>
+      <button onclick="resetBoard()">Play new board</button>
+      <button onclick="resetHistory()">Clear history</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  let board = [];
+  setArray()
+  function setArray(){
+    for (let i = 0; i < 15; i++) {
+      board[i] = [];
+      for (let j = 0; j < 20; j++) {
+        board[i][j] = "";
+      }
+    }
+  }
+
+  let currentPlayer = "X";
+  setupBoard();
+  function setupBoard() {
+    let boards = "<table>";
+    for (let i = 0; i < 15; i++) {
+      boards += "<tr>";
+      for (let j = 0; j < 20; j++) {
+        boards += `<td id="${i}_${j}" onclick="xclick(this)"></td>`;
+      }
+      boards += "</tr>";
+    }
+    boards += "</table>";
+    document.getElementById('board-container').innerHTML = boards;
+    setTimeout(() => alert(`Người chơi ${currentPlayer} đi trước!`), 200);
+  }
+  function checkWin(row, col) {
+    // Check theo hàng
+    let count = 0;
+    let winCells = [];
+    for (let j = 0; j < 20; j++) {
+      if (board[row][j] === currentPlayer) {
+        count++;
+        winCells.push({row: row, col: j});
+        if (count === 5) {
+          highlightCells(winCells);
+          return true;
+        }
+      } else {
+        count = 0;
+        winCells = [];
+      }
+    }
+    // Check theo cột
+    count = 0;
+    winCells = [];
+    for (let i = 0; i < 15; i++) {
+      if (board[i][col] === currentPlayer) {
+        count++;
+        winCells.push({row: i, col: col});
+        if (count === 5) {
+          highlightCells(winCells);
+          return true;
+        }
+      } else {
+        count = 0;
+        winCells = [];
+      }
+    }
+    // Check đường chéo chính
+    count = 0;
+    winCells = [];
+    let i = row;
+    let j = col;
+    while (i > 0 && j > 0) {
+      i--;
+      j--;
+    }
+    while (i < 15 && j < 20) {
+      if (board[i][j] === currentPlayer) {
+        count++;
+        winCells.push({row: i, col: j});
+        if (count === 5) {
+          highlightCells(winCells);
+          return true;
+        }
+      } else {
+        count = 0;
+        winCells = [];
+      }
+      i++;
+      j++;
+    }
+    // Check đường chéo phụ
+    count = 0;
+    winCells = [];
+    i = row;
+    j = col;
+    while (i > 0 && j < 19) {
+      i--;
+      j++;
+    }
+    while (i < 15 && j >= 0) {
+      if (board[i][j] === currentPlayer) {
+        count++;
+        winCells.push({row: i, col: j});
+        if (count === 5) {
+          highlightCells(winCells);
+          return true;
+        }
+      } else {
+        count = 0;
+        winCells = [];
+      }
+      i++;
+      j--;
+    }
+
+    return false;
+  }
+
+  function highlightCells(cells) {
+    for (let cell of cells) {
+      const td = document.getElementById(`${cell.row}_${cell.col}`);
+      td.style.background = "orange";
+    }
+  }
+  function resetBoard() {
+    if(confirm('Bạn có muốn tạo lại bàn cờ mới không ?!')){
+      switchPlayer();
+      setupBoard();
+      setArray();
+    }
+  }
+
+  function resetHistory() {
+    if(confirm("Bạn có chắc chắn muốn xóa hết lịch sử không?! ")){
+      document.getElementById("player1-wins").value = 0;
+      document.getElementById("player2-wins").value = 0;
+    }
+  }
+
+  function switchPlayer() {
+    if (currentPlayer === "X") {
+      currentPlayer = "O";
+    } else {
+      currentPlayer = "X";
+    }
+  }
+
+
+  //Hàm main khi người chơi click vào các ô
+  function xclick(td) {
+    if (currentPlayer === "X") { // Human player's turn
+      if (td.innerHTML === "") {
+        const row = td.parentNode.rowIndex;
+        const col = td.cellIndex;
+        board[row][col] = currentPlayer;
+        td.innerHTML = currentPlayer;
+        td.style.color = "blue";
+        if (checkWin(row, col)) {
+          setTimeout(function () {
+            alert(`Người chơi ${currentPlayer} đã thắng!`);
+            resetBoard()
+          }, 2);
+          document.getElementById("player1-wins").value = parseInt(document.getElementById("player1-wins").value) + 1;
+        } else {
+          currentPlayer = "O"; // Switch to computer player's turn
+          const computerMove = get_computer_move(board);
+          board[computerMove.row][computerMove.col] = currentPlayer;
+          const computerTd = document.getElementById(`${computerMove.row}_${computerMove.col}`);
+          computerTd.innerHTML = currentPlayer;
+          computerTd.style.color = "red";
+          if (checkWin(computerMove.row, computerMove.col)) {
+            setTimeout(function () {
+              alert(`Người chơi ${currentPlayer} đã thắng!`);
+              resetBoard()
+            }, 2);
+            document.getElementById("player2-wins").value = parseInt(document.getElementById("player2-wins").value) + 1;
+          } else {
+            currentPlayer = "X"; // Switch back to human player's turn
+          }
+        }
+      }
+    }
+  }
+
+  function get_computer_move(board) {
+    let row, col;
+    do {
+      row = Math.floor(Math.random() * board.length);
+      col = Math.floor(Math.random() * board[0].length);
+    } while (board[row][col] !== "");
+    return { row: row, col: col };
+  }
+
+
+</script>
+
 </body>
+
 </html>

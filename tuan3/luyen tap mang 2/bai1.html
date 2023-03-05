@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    let n = prompt('Nhập số hàng của mảng:');
+    let m = prompt('Nhập số cột của mảng:')
+    let arr = [];
+    for (let i = 0; i < n; i++) {
+        arr[i] = [];
+        for (let j = 0; j < m; j++) {
+            arr[i][j] = Math.floor(Math.random() * 100);
+        }
+    }
+    console.log(arr);
+    // hoặc dùng push
+    // for (let i = 0; i < n; i++) {
+    //     arr.push([]);
+    //     for (let j = 0; j < m; j++) {
+    //         arr[i].push(Math.floor(Math.random() * 100));
+    //     }
+    // }
+    // console.log(arr);
+
+
+    for (let [i, row] of arr.entries()) {
+        console.log('row' + i);
+        for (let value of row) {
+            console.log(" " + value);
+        }
+    }
+
+
+</script>
+</body>
+</html>
