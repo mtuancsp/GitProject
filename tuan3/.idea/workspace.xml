@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9230a059-113d-4173-b446-8641b97bc965" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/hàm/Chuyển đổi nhiệt độ.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hàm/Hàm kiểm tra số nguyên tố.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hàm/Tìm giá trị nhỏ nhất của mảng.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hàm/test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test.html" beforeDir="false" afterPath="$PROJECT_DIR$/../test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tuan2/Puzzle.html" beforeDir="false" afterPath="$PROJECT_DIR$/../tuan2/Puzzle.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tuan2/inRaSoNguyenTo.html" beforeDir="false" afterPath="$PROJECT_DIR$/../tuan2/inRaSoNguyenTo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tuan2/loop/FizzBuzz.html" beforeDir="false" afterPath="$PROJECT_DIR$/../tuan2/loop/FizzBuzz.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tuan2/loop/dem1den100.html" beforeDir="false" afterPath="$PROJECT_DIR$/../tuan2/loop/dem1den100.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tuan2/loop/nFirstNumFibo.html" beforeDir="false" afterPath="$PROJECT_DIR$/../tuan2/loop/nFirstNumFibo.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2McerMRKR2SLVN5yNtRpMfZUTyu" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/Codegym/md1/GitProject",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9230a059-113d-4173-b446-8641b97bc965" name="Changes" comment="" />
+      <created>1678071495523</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1678071495523</updated>
+      <workItem from="1678071496593" duration="14000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

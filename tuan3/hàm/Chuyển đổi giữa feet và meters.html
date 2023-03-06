@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chuyển đổi giữa meters và feet</title>
+</head>
+<body>
+<h1>Chuyển đổi giữa meters và feet</h1>
+<form>
+  <label>
+    Nhập giá trị:
+    <input type="number" id="value" name="value" required>
+  </label>
+  <br><br>
+  <label>
+    Đơn vị đo:
+    <select id="unit" name="unit">
+      <option value="m">meters</option>
+      <option value="f">feet</option>
+    </select>
+  </label>
+  <br><br>
+  <button type="button" onclick="convert()">Chuyển đổi</button>
+</form>
+<br>
+<div id="result"></div>
+<script>
+  // Phương thức chuyển đổi từ feet sang meters
+  function footToMeter(foot) {
+    const meter = foot * 0.3048;
+    return meter;
+  }
+
+  // Phương thức chuyển đổi từ meters sang feet
+  function meterToFoot(meter) {
+    const foot = meter / 0.3048;
+    return foot;
+  }
+
+  // Hàm xử lý sự kiện khi người dùng bấm nút Chuyển đổi
+  function convert() {
+    const valueInput = document.getElementById("value");
+    const unitSelect = document.getElementById("unit");
+    const resultDiv = document.getElementById("result");
+
+    const value = Number.parseFloat(valueInput.value);
+    if (Number.isNaN(value)) {
+      resultDiv.innerText = "Giá trị không hợp lệ!";
+      return;
+    }
+
+    const unit = unitSelect.value;
+    let convertedValue, convertedUnit;
+    if (unit === "m") {
+      convertedValue = meterToFoot(value);
+      convertedUnit = "feet";
+    } else {
+      convertedValue = footToMeter(value);
+      convertedUnit = "meters";
+    }
+
+    resultDiv.innerText = `${value} ${unit} = ${convertedValue.toFixed(3)} ${convertedUnit}`;
+  }
+</script>
+</body>
+</html>
