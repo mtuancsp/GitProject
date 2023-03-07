@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  function check(word) {
+    if (word.length <= 1) {
+      return true;
+    }
+    if (word[0] !== word[word.length - 1]) {
+      return false;
+    }
+    return check(word.slice(1, -1));
+  }
+
+  let word = prompt("Enter the word: ")
+  if(check(word)){
+    alert("Đối xứng.")
+  } else {
+    alert("Không đối xứng.")
+  }
+
+</script>
+</body>
+</html>
