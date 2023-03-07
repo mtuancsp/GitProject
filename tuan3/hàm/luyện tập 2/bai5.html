@@ -6,12 +6,13 @@
 </head>
 <body>
 <script>
-  function isNumber(character) {
-    return !isNaN(parseFloat(character));
+  function minOfThreeNumbers(a, b, c) {
+    return a < b ? (a < c ? a : c) : (b < c ? b : c);
   }
 
-  let char = prompt("Nhập vào kí tự: ");
-  alert(isNumber(char));
+  console.log(minOfThreeNumbers(4, 7, 2));
+
+
 
 </script>
 </body>
