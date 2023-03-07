@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table, th, td {
+            border: 2px solid white;
+        }
+        tr:nth-child(odd) {
+            background-color: #e3dde5;
+        }
+
+
+
+        body {
+            font-size: 20px;
+            font-family: "Times New Roman", sans-serif;
+        }
+
+        form {
+            padding: 20px;
+            width: max-content;
+            background-color: #e3dde5;
+        }
+
+        button {
+            background-color: green;
+            border: 0;
+            border-radius: 10%;
+            color: white;
+            height: 30px;
+        }
+    </style>
+
+</head>
+<body>
+<h2><label for="add">Add New Product</label><br></h2>
+<form onsubmit="addProduct(); return false;">
+    <input type="text" id="add" placeholder="New Product">
+    <button>Add</button>
+</form>
+<h2>Display All Product</h2>
+<p><b>Product Name</b></p>
+
+<div id="productList"></div>
+
+<script>
+
+    const arr = ['Sony Xperia', 'Nokia 6', 'Xiaomi Redmi Note 7'];
+    displayList();
+
+    function addProduct() {
+        const newProduct = document.getElementById("add").value;
+        arr.push(newProduct);
+        displayList();
+    }
+
+    function displayList() {
+        let list = "<table>";
+        for (let i = 0; i < arr.length; i++) {
+            list += `<tr><td>${arr[i]}</td> <td><button onclick='edit(${i})'>Edit</button></td> <td><button onclick='deleteProduct(${i})'>Delete</button></td></tr>`;
+        }
+        list += "</table>";
+
+        document.getElementById("productList").innerHTML = list;
+    }
+
+    function edit(index) {
+        const newName = prompt("Nhập tên mới:");
+        if (newName !== null && newName.trim() !== "") {
+            arr[index] = newName;
+            displayList();
+        }
+    }
+
+
+    function deleteProduct(index) {
+        arr.splice(index, 1);
+        displayList();
+    }
+</script>
+</body>
+
+</html>
