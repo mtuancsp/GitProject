@@ -1,10 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
 <body>
-$END$
+<h2><label for="add">Add New Product</label><br></h2>
+<form onsubmit="addProduct(); return false;">
+  <input type="text" id="add" placeholder="New Product">
+  <button>Add</button>
+</form>
+<h2>Display All Product</h2>
+<p><b>Product Name</b></p>
+<div id="productList"></div>
+
+<script>
+  const arr = ["a", "b", "c"];
+  displayList();
+
+  function addProduct() {
+    const newProduct = document.getElementById("add").value;
+    arr.push(newProduct);
+    displayList();
+    document.getElementById("add").value = "";
+  }
+
+  function displayList() {
+    let list = "<table>";
+    for (let i = 0; i < arr.length; i++) {
+      list +=
+              "<tr><td>" +
+              arr[i] +
+              "</td><td><button onclick='edit(" +
+              i +
+              ")'>Edit</button></td><td><button onclick='deleteProduct(" +
+              i +
+              ")'>Delete</button></td></tr>";
+    }
+    list += "</table>";
+
+    document.getElementById("productList").innerHTML = list;
+  }
+
+  function edit(index) {
+    const newName = prompt("Nhập tên mới: ");
+    if (newName != null) {
+      arr[index] = newName;
+      displayList();
+    }
+  }
+
+  function deleteProduct(index) {
+    arr.splice(index, 1);
+    displayList();
+  }
+</script>
 </body>
-</html>

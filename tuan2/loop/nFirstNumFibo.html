@@ -7,7 +7,6 @@
 <body>
 
 <script>
-    let n = +prompt("Nhập số lượng số Fibonacci bạn muốn in ra: ");
     function printFibonacciNumbers(n) {
         let a = 1;
         let b = 1;
@@ -16,18 +15,16 @@
         document.write(b + "<br>");
         for (let i = 3; i <= n; i++) {
             c = a + b;
-
             //tìm số đầu tiên trong dãy chia hêt cho 5
             // if(c%5===0){
             //     alert(c);
             // }
-
             document.write(c + "<br>");
             a = b;
             b = c;
         }
     }
-
+    let n = +prompt("Nhập số lượng số Fibonacci bạn muốn in ra: ");
     printFibonacciNumbers(n);
 
 </script>

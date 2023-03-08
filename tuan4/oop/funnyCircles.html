@@ -49,6 +49,7 @@
     let x = Math.random() * window.innerWidth;
     let y = Math.random() * window.innerHeight;
     let circle= new Circle(x, y, radius);
+    circle.color = color;
     ctx.beginPath();
     ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
     ctx.fillStyle = color;
@@ -123,9 +124,6 @@
     }
 
   }
-
-
-
 
 
 </script>

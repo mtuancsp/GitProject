@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="myCanvas" height="500" width="900"></canvas>
+<script>
+    function Rectangle(length, width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    Rectangle.prototype.area = function () {
+        return this.length * this.width;
+    }
+
+    Rectangle.prototype.perimeter = function () {
+        return 2 * (this.length + this.width);
+    }
+
+    Rectangle.prototype.setLength = function (length) {
+        this.length = length;
+    }
+
+    Rectangle.prototype.setWidth = function (width) {
+        this.width = width;
+    }
+
+
+    let rectangle = new Rectangle(200, 100);
+
+    function drawRectangle(x, y) {
+        let c = document.getElementById("myCanvas");
+        let ctx = c.getContext("2d");
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = rectangle.width / 5;
+        ctx.strokeRect(x, y, x + rectangle.length, y + rectangle.width);
+        ctx.fillStyle = "yellow";
+        ctx.fillRect(x, y, x + rectangle.length, y + rectangle.width);
+
+
+        // let gradient = ctx.createLinearGradient(50, 25, 150, 75);
+        // gradient.addColorStop(0, "red");
+        // gradient.addColorStop(1, "blue");
+        // ctx.fillStyle = gradient;
+        // ctx.fillRect(50, 25, 150, 150);
+
+
+    }
+
+    rectangle.setLength(300);
+    rectangle.setWidth(200);
+    drawRectangle(50, 50)
+    document.write(`Diện tích: ${rectangle.area()}, chu vi: ${rectangle.perimeter()}`)
+
+
+</script>
+</body>
+</html>

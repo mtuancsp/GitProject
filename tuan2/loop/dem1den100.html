@@ -8,9 +8,9 @@
 
 <script>
   for(let i=1; i<=100;i++){
-    if (i===99) alert('Đã hoàn thành');
-    else {
-      console.log(i);
+      document.write(i+'<br>')
+    if (i===99) {
+        setTimeout( () => alert("Bạn đã hoàn thành trò chơi"), 300);
     }
   }
 </script>

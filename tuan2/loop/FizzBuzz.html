@@ -19,11 +19,23 @@
     // }
 
     let ans = '';
-    for (let i = 1; i <= 100; i++) {
-        if (i % 3 === 0) ans += 'Fizz';
-        if (i % 5 === 0) ans += 'Buzz';
-        else ans = i;
-        console.log(ans);
+    for (let i = 1; i <= 1000; i++) {
+
+        if (i % 3 === 0) {
+            ans += 'Ba';
+        }
+        if (i % 4 === 0) {
+            ans += 'Bon';
+        }
+        if (i % 5 === 0) {
+            ans += 'Nam';
+        }
+        if (i % 7 === 0) {
+            ans += 'Bay';
+        }
+
+        console.log(i + ans);
+
         ans = '';
     }
 </script>

@@ -215,11 +215,11 @@
           setTimeout(function () {
             alert(`Người chơi ${currentPlayer} đã thắng!`);
             resetBoard()
-          }, 2);
+          }, 200);
           document.getElementById("player1-wins").value = parseInt(document.getElementById("player1-wins").value) + 1;
         } else {
-          currentPlayer = "O"; // Switch to computer player's turn
-          const computerMove = get_computer_move(board);
+          currentPlayer = "O"; // Switch to computer turn
+          const computerMove = get_computer_move(board,row,col);
           board[computerMove.row][computerMove.col] = currentPlayer;
           const computerTd = document.getElementById(`${computerMove.row}_${computerMove.col}`);
           computerTd.innerHTML = currentPlayer;
@@ -228,7 +228,7 @@
             setTimeout(function () {
               alert(`Người chơi ${currentPlayer} đã thắng!`);
               resetBoard()
-            }, 2);
+            }, 200);
             document.getElementById("player2-wins").value = parseInt(document.getElementById("player2-wins").value) + 1;
           } else {
             currentPlayer = "X"; // Switch back to human player's turn
@@ -238,13 +238,13 @@
     }
   }
 
-  function get_computer_move(board) {
-    let row, col;
+  function get_computer_move(board,row,col) {
+    let rowCom, colCom;
     do {
-      row = Math.floor(Math.random() * board.length);
-      col = Math.floor(Math.random() * board[0].length);
-    } while (board[row][col] !== "");
-    return { row: row, col: col };
+      rowCom = row -1 + Math.floor(Math.random() * 3);
+      colCom = col -1 + Math.floor(Math.random() * 3);
+    } while (board[rowCom][colCom] !== "");
+    return { row: rowCom, col: colCom };
   }
 
 
