@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  class Temperature{
+    constructor(celsius) {
+      this.celsius = celsius;
+    }
+    convertToF(){
+      return 1.8*this.celsius + 32;
+    }
+    convertToK(){
+      return 273 + this.celsius;
+    }
+  }
+
+  let C = +prompt(`Nhập nhiệt độ theo độ C:`)
+  let temperature = new Temperature(C);
+  let F = temperature.convertToF();
+  let K = temperature.convertToK();
+  document.write(`${C}<sup>o</sup>C <br> ${F}<sup>o</sup>F <br> ${K}<sup>o</sup>K`);
+</script>
+</body>
+</html>
