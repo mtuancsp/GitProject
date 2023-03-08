@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  class Mobile {
+    constructor() {
+      this.battery = 100;
+      this.messageDraft = '';
+      this.inbox = [];
+      this.sentMessages = [];
+      this.isPowerOn = false;
+    }
+
+    checkPower() {
+      return this.isPowerOn;
+    }
+
+    powerOn() {
+      this.isPowerOn = true;
+      this.battery -= 1;
+      console.log('Đã bật nguồn');
+    }
+
+    powerOff() {
+      this.isPowerOn = false;
+      console.log('Đã tắt nguồn.');
+    }
+
+    chargeBattery() {
+      if (this.battery < 100) {
+        this.battery += 1;
+        console.log('Đang sạc pin.');
+      } else {
+        console.log('Pin đã đầy.');
+      }
+    }
+
+    draftMessage(message) {
+      if (this.checkPower()) {
+        this.messageDraft = message;
+        this.battery -= 1;
+        console.log('Đã soạn tin nhắn.');
+      } else {
+        console.log('Điện thoại đang tắt nguồn, vui lòng bật máy.');
+      }
+    }
+
+    receiveMessage(message) {
+      if (this.checkPower()) {
+        this.inbox.push(message);
+        this.battery -= 1;
+        console.log('Nhận 1 tin nhắn');
+      } else {
+        console.log('Điện thoại đang tắt nguồn, vui lòng bật máy!');
+      }
+    }
+
+    sendMessage(receiver, message) {
+      if (this.checkPower()) {
+        if (receiver.checkPower()) {
+          this.sentMessages.push(message);
+          receiver.receiveMessage(message);
+          this.battery -= 1;
+          console.log('Đã gửi tin nhắn.');
+        } else {
+          console.log(`${receiver.constructor.name} đang tắt nguồn.`);
+        }
+      } else {
+        console.log('Điện thoại đang tắt nguồn, vui lòng bật máy!');
+      }
+    }
+  }
+
+
+  // Test
+  const nokia = new Mobile();
+  nokia.model = 'Nokia';
+
+  const iphone = new Mobile();
+  iphone.model = 'iPhone';
+
+  // Sử dụng đối tượng Nokia
+  nokia.powerOn(); // Mobile phone is on
+  nokia.draftMessage('Hello Iphone'); // Message drafted
+  nokia.receiveMessage('Hi Nokia'); // Message received
+  nokia.chargeBattery(); // Battery is charging
+  nokia.chargeBattery(); // Battery is already full
+  nokia.powerOff(); // Mobile phone is off
+
+  // Sử dụng đối tượng iPhone
+  iphone.powerOn(); // Mobile phone is on
+  iphone.draftMessage('Hello'); // Message drafted
+  iphone.sendMessage(nokia, 'Hi'); // Message sent to 1234567890
+  iphone.chargeBattery(); // Battery is charging
+  iphone.chargeBattery(); // Battery is already full
+  iphone.powerOff(); // Mobile phone is off
+
+
+</script>
+</body>
+</html>
