@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  class Switch {
+    constructor() {
+      this.isOn = false;
+    }
+
+    turnOn() {
+      this.isOn = true;
+    }
+
+    turnOff() {
+      this.isOn = false;
+    }
+
+    connectTo(lamp) {
+      this.lamp = lamp;
+    }
+
+    toggle() {
+      this.isOn ? this.turnOff() : this.turnOn();
+      this.lamp.updateStatus(this.isOn);
+    }
+  }
+
+  class Lamp {
+    constructor() {
+      this.isOn = false;
+    }
+
+    updateStatus(status) {
+      this.isOn = status;
+      console.log(`Bóng đèn đang ${this.isOn ? 'sáng' : 'tắt'}`);
+    }
+  }
+
+  const switch1 = new Switch();
+  const lamp1 = new Lamp();
+
+  switch1.connectTo(lamp1);
+
+  for (let i = 0; i < 10; i++) {
+    switch1.toggle();
+  }
+
+</script>
+</body>
+</html>
