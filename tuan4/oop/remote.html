@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+  class Remote {
+    constructor(code) {
+      this.code = code;
+    }
+
+    changeChannel(tv, channel) {
+      tv.channel = channel;
+      console.log(`Điều khiển Tivi chuyển kênh ${channel}`);
+    }
+
+    changeVolume(tv, volume) {
+      tv.volume = volume;
+      console.log(`Điều khiển âm lượng Tivi thành ${volume}`);
+    }
+  }
+
+  class TiVi {
+    constructor(channel, volume, isOn) {
+      this.channel = channel;
+      this.volume = volume;
+      this.isOn = false;
+    }
+
+    turnOn(){
+      this.isOn = true;
+      console.log(`Đã bật Tivi`);
+    }
+    turnOff(){
+      this.isOn = false;
+      console.log(`Đã tắt Tivi`);
+    }
+
+    changeChannel(channel) {
+      this.channel = channel;
+      console.log(`Tivi đã bật kênh ${channel}`);
+    }
+
+    changeVolume(volume) {
+      this.volume = volume;
+      console.log(`Tivi đã điều chỉnh âm lượng thành ${volume}`);
+    }
+  }
+
+  const tv = new TiVi(1, 5, false);
+  const remote = new Remote(1234);
+
+  tv.turnOn()
+
+  remote.changeChannel(tv, 7);
+  console.log(`Tivi đang bật kênh ${tv.channel}`);
+
+  remote.changeChannel(tv, 3);
+  console.log(`Tivi đang bật kênh ${tv.channel}`);
+
+  remote.changeVolume(tv, tv.volume + 2);
+
+  tv.turnOff();
+
+
+</script>
+</body>
+</html>
