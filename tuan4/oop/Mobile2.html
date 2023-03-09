@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  class Mobile {
+    constructor() {
+      this.battery = 100;
+      this.drafts = [];
+      this.inbox = [];
+      this.sent = [];
+      this.isOn = false;
+    }
+
+    checkStatus() {
+      return this.isOn ? 'On' : 'Off';
+    }
+
+    turnOn() {
+      this.isOn = true;
+      this.battery--;
+    }
+
+    turnOff() {
+      this.isOn = false;
+      this.battery--;
+    }
+
+    chargeBattery() {
+      if (this.battery < 100) {
+        this.battery++;
+      }
+    }
+
+    writeDraft(draft) {
+      if (this.isOn) {
+        this.drafts.push(draft);
+        this.battery--;
+      }
+    }
+
+    receiveMessage(message) {
+      if (this.isOn) {
+        this.inbox.push(message);
+        this.battery--;
+      }
+    }
+
+    sendMessage(message, mobile) {
+      if (this.isOn) {
+        mobile.receiveMessage(message);
+        this.sent.push(message);
+        this.battery--;
+      }
+    }
+
+    checkInbox() {
+      if (this.isOn) {
+        this.battery--;
+        return this.inbox;
+      }
+    }
+
+
+    checkSent() {
+      if (this.isOn) {
+        this.battery--;
+        return this.sent;
+      }
+    }
+  }
+
+
+  const nokia = new Mobile();
+  const iphone = new Mobile();
+
+  nokia.turnOn();
+  iphone.turnOn();
+
+  nokia.writeDraft('Hello');
+  nokia.sendMessage(nokia.drafts[0], iphone);
+  console.log(iphone.checkInbox());
+
+
+</script>
+</body>
+</html>

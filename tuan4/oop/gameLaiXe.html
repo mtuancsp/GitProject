@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="canvas" width="1000" height="500" style="border: 1px solid black;"></canvas>
+<script>
+
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+    img.src = "car_2.png";
+    let x = canvas.width/2 - 112/2;
+    let y = canvas.height/2 - 87/2;
+    img.onload = function() {
+        ctx.drawImage(img, x, y);
+    }
+    let obstacles = []; // mảng lưu trữ các chướng ngại vật và đồng tiền
+    for (let i=0 ; i<6 ; i++){
+        addObject("coin");
+        addObject("obstacle");
+    }
+
+    //làm mới hình ảnh liên tục
+    function update() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawObject();
+        ctx.drawImage(img, x, y);
+        checkCollision();
+    }
+    let gameLoop = setInterval(update, 50);
+
+
+    let speed = 10;
+    let isCtrlPressed = false;
+
+
+    function drawObject() {
+        obstacles.forEach((obstacle) => {
+            ctx.fillStyle = obstacle.type === "coin" ? "gold" : "red";
+            const radius = obstacle.type === "coin" ? 15 : 20;
+            ctx.beginPath();
+            ctx.arc(obstacle.x, obstacle.y, radius, 0, 2 * Math.PI);
+            ctx.fill();
+            if (obstacle.type === "coin") {
+                ctx.fillStyle = "black";
+                ctx.font = "bold 20px Arial";
+                ctx.fillText("$", obstacle.x - 7, obstacle.y + 7);
+            }
+        });
+    }
+
+
+    function addObject(type) {
+        let object;
+        do {
+            object = {
+                x: Math.floor(Math.random() * (canvas.width - 50)),
+                y: Math.floor(Math.random() * (canvas.height - 50)),
+                type: type
+            };
+        } while ((object.x >= 400 && object.x <= 600) && (object.y >= 200 && object.y <= 300));
+
+        obstacles.push(object);
+    }
+
+
+
+
+    let score = 0;
+
+    function checkCollision() {
+        for (let i = 0; i < obstacles.length; i++) {
+            let obstacle = obstacles[i];
+            if (
+                x < obstacle.x + 20 &&
+                x + 100 > obstacle.x &&
+                y < obstacle.y + 20 &&
+                y + 70 > obstacle.y
+            ) {
+                if (obstacle.type === "obstacle") {
+                    // va chạm vào chướng ngại vật
+                    setTimeout(function (){
+                        clearInterval(gameLoop);
+                        alert("Game over!");
+                    },200);
+                } else {
+                    // đi qua đồng tiền
+                    obstacles.splice(i, 1);
+                    i--;
+                    score++;
+                    if(obstacles.filter(o => o.type === "coin").length===0){
+                        setTimeout(function (){
+                            clearInterval(gameLoop);
+                            alert("You win!");
+                        },200);
+
+
+                    }
+
+                }
+            }
+        }
+        ctx.font = "30px Arial";
+        ctx.fillStyle = "black";
+        ctx.fillText("Score: " + score, 10, 50);
+    }
+
+
+    document.addEventListener('keydown', function(event) {
+        if (event.code === 'ControlLeft' || event.code === 'ControlRight') {
+            isCtrlPressed = true;
+        }
+        if (event.code === 'ArrowUp') {
+            y -= (isCtrlPressed ? speed * 2 : speed);
+        }
+        if (event.code === 'ArrowDown') {
+            y += (isCtrlPressed ? speed * 2 : speed);
+        }
+        if (event.code === 'ArrowLeft') {
+            x -= (isCtrlPressed ? speed * 2 : speed);
+        }
+        if (event.code === 'ArrowRight') {
+            x += (isCtrlPressed ? speed * 2 : speed);
+        }
+
+        //ngăn không cho xe đi quá biên của canvas
+        if (x < 0) {
+            x = 0;
+        } else if (x + 112 > canvas.width) {
+            x = canvas.width - 112;
+        }
+        if (y < 0) {
+            y = 0;
+        } else if (y + 87 > canvas.height) {
+            y = canvas.height - 87;
+        }
+    });
+
+    document.addEventListener('keyup', function(event) {
+        if (event.code === 'ControlLeft' || event.code === 'ControlRight') {
+            isCtrlPressed = false;
+        }
+    });
+
+
+
+
+</script>
+</body>
+</html>
