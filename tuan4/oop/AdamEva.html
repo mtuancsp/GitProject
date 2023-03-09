@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  // Lớp Apple
+  class Apple {
+    constructor() {
+      this.weight = 10;
+    }
+  }
+
+  // Lớp Human
+  class Human {
+    constructor(name, gender, weight) {
+      this.name = name;
+      this.gender = gender;
+      this.weight = weight;
+    }
+
+    speak(words) {
+      console.log(`${this.name} says: ${words}`);
+    }
+
+    isMale() {
+      return this.gender === "male";
+    }
+
+    setGender(isMale) {
+      this.gender = isMale ? "male" : "female";
+    }
+
+    checkApple(apple) {
+      return apple.weight > 0;
+    }
+
+    eat(apple) {
+      if (this.checkApple(apple)) {
+        console.log(`${this.name} ăn một miếng táo.`);
+        apple.weight--;
+        this.weight++;
+      } else {
+        console.log("Đã ăn hết quả táo");
+      }
+    }
+
+    getName() {
+      return this.name;
+    }
+
+    setName(name) {
+      this.name = name;
+    }
+
+    getWeight() {
+      return this.weight;
+    }
+
+    setWeight(weight) {
+      this.weight = weight;
+    }
+  }
+
+  // Tạo đối tượng Adam và Eva
+  const adam = new Human("Adam", "male", 70);
+  const eva = new Human("Eva", "female", 60);
+
+  // Tạo đối tượng quả táo
+  const apple = new Apple();
+
+  // Adam và Eva ăn táo cho đến khi hết
+  while (adam.checkApple(apple) || eva.checkApple(apple)) {
+    adam.eat(apple);
+    eva.eat(apple);
+  }
+  console.log(`The apple weighs ${apple.weight} units.`);
+  console.log(`Adam is male: ${adam.isMale()}`);
+  adam.setGender(false);
+  console.log(`Adam is male: ${adam.isMale()}`);
+  console.log(`Eva's name: ${eva.getName()}`);
+  eva.setName("Eve");
+  console.log(`Eva's name: ${eva.getName()}`);
+  console.log(`Adam's weight: ${adam.getWeight()}`);
+  adam.setWeight(80);
+  console.log(`Adam's weight: ${adam.getWeight()}`);
+
+
+</script>
+</body>
+</html>
