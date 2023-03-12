@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="myCanvas" width="700" height="500" style="border: 1px solid"></canvas>
+<script>
+
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let radius = 10;
+  let x = canvas.width/2;
+  let y = canvas.height/2;
+  let vx = 1;
+  let vy = 2;
+  let barWidth = 100;
+  let barHeight = 10;
+  let barX = (canvas.width - barWidth) / 2;
+  let barY = canvas.height - 50 - barHeight;
+  let barSpeed = 20;
+  let score = 0;
+  let highScore = localStorage.getItem("highScore");
+
+
+
+  function f5() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    moveBall();
+    createBall();
+    drawBar();
+    checkBarCollision();
+    drawScore();
+  }
+  let gameLoop = setInterval(f5, 1000/60);
+
+  function createBall(){
+    ctx.beginPath();
+    ctx.arc(x,y,radius,0,2*Math.PI);
+    ctx.fillStyle = "orange";
+    ctx.fill();
+  }
+
+
+  function moveBall(){
+    x += vx;
+    y += vy;
+    checkOutOfCanvas()
+  }
+  function checkOutOfCanvas(){
+    if (x - radius < 0) {
+      vx = -vx;
+      x = radius;
+    }
+    if (x + radius > canvas.width) {
+      vx = -vx;
+      x = canvas.width - radius;
+    }
+    if (y - radius < 0) {
+      vy = -vy;
+      y = radius;
+    }
+    if (y + radius > canvas.height) {
+      gameOver();
+    }
+  }
+
+  function drawBar() {
+    ctx.beginPath();
+    ctx.rect(barX, barY, barWidth, barHeight);
+    ctx.fillStyle = "blue";
+    ctx.fill();
+  }
+
+  document.addEventListener("keydown", function(event) {
+    if (event.code === "ArrowLeft") {
+      barX -= barSpeed;
+    } else if (event.code === "ArrowRight") {
+      barX += barSpeed;
+    }
+
+    if (barX < 0) {
+      barX = 0;
+    } else if (barX + barWidth > canvas.width) {
+      barX = canvas.width - barWidth;
+    }
+  });
+
+  function checkBarCollision() {
+    if (y + radius >= barY && y + radius <= barY + barHeight && x >= barX && x <= barX + barWidth) {
+      // Quả bóng va chạm với thanh
+      score++;
+      vx++;
+      vy++;
+      barSpeed+=2;
+      vy = -vy;
+      y = barY - radius;
+    }
+  }
+
+  function drawScore() {
+    ctx.font = "24px Arial";
+    ctx.fillStyle = "Red";
+    ctx.textAlign = "center";
+    ctx.fillText("Score: " + score + "    High Score: " + highScore, canvas.width/2, 30);
+  }
+
+  function gameOver() {
+    clearInterval(gameLoop);
+    alert("Game over! Your score is " + score);
+    if (score > highScore) {
+      highScore = score;
+      localStorage.setItem("highScore", highScore);
+      alert("New high score: " + highScore);
+    }
+    if (confirm("Do you want to play again?")) {
+      score = 0;
+      vx = 2;
+      vy = 2;
+      x = canvas.width/2;
+      y = canvas.height/2;
+      barX = canvas.width/2 - barWidth/2;
+      barSpeed = 20;
+      gameLoop = setInterval(f5, 1000/60);
+    } else {
+      //không chơi lại, làm gì đó ở đây nếu cần
+    }
+  }
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

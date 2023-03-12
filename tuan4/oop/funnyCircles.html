@@ -1,129 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Funny Circle</title>
+    <meta charset="UTF-8">
+    <title>Funny Circle</title>
 </head>
 <body>
 <canvas id="myCanvas" width="1100px" height="580px" style="border:1px solid #d3d3d3;"></canvas>
 <script>
 
-  let circles = [];
-  start();
+    let circles = [];
+    start();
 
-  function start(){
-    for (let i = 0; i < 20; i++) {
-      circles.push(createCircle());
-    }
-
-    setInterval(function() {
-      for (let i = 0; i < circles.length; i++) {
-        moveCircle(circles[i]);
-      }
-    }, 1000/60);
-  }
-
-  function Circle(x, y, radius){
-    this.x = x;
-    this.y = y;
-    this.radius = radius;
-    this.vx = Math.random()*4-2 ;
-    this.vy = Math.random()*4-2 ;
-  }
-
-  function getRandomHex(){
-    return Math.floor(Math.random()*255);
-  }
-
-  function getRandomColor(){
-    let red = getRandomHex();
-    let green = getRandomHex();
-    let blue = getRandomHex();
-    return "rgb(" + red + "," + blue + "," + green +")";
-  }
-
-  function createCircle(){
-    let ctx = document.getElementById("myCanvas").getContext("2d");
-    let radius = Math.floor(Math.random() * 50);
-    let color = getRandomColor();
-    let x = Math.random() * window.innerWidth;
-    let y = Math.random() * window.innerHeight;
-    let circle= new Circle(x, y, radius);
-    circle.color = color;
-    ctx.beginPath();
-    ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
-    ctx.fillStyle = color;
-    ctx.fill();
-    return circle;
-  }
-
-  function moveCircle(circle){
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
-
-    // Tính toán vị trí mới của hình tròn
-    circle.x += circle.vx;
-    circle.y += circle.vy;
-
-    // Để các hình tròn di chuyển thì ta xóa hình tròn cũ và vẽ hình tròn mới ở vị trí tiếp theo
-    ctx.beginPath();
-    ctx.arc(circle.x, circle.y, circle.radius+3, 0, 2 * Math.PI);
-    ctx.fillStyle = "#FFFFFF";
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
-    ctx.fillStyle = getRandomColor();
-    ctx.fill();
-
-    checkCollide(circles);
-    checkOutOfCanvas(circles);
-
-    // Kiểm tra xem hình tròn có đi quá biên của canvas không
-    function checkOutOfCanvas(){
-      if(circle.x - circle.radius < 0){
-        circle.vx = -circle.vx;
-        circle.x = circle.radius;
-      }
-      if(circle.x + circle.radius > canvas.width){
-        circle.vx = -circle.vx;
-        circle.x = canvas.width - circle.radius;
-      }
-      if(circle.y - circle.radius < 0){
-        circle.vy = -circle.vy;
-        circle.y = circle.radius;
-      }
-      if(circle.y + circle.radius > canvas.height){
-        circle.vy = -circle.vy;
-        circle.y = canvas.height - circle.radius;
-      }
-    }
-
-    // Kiểm tra va chạm giữa các hình tròn
-    function checkCollide(circles){
-      for (let i = 0; i < circles.length; i++) {
-        for (let j = i + 1; j < circles.length; j++) {
-          let dx = circles[i].x - circles[j].x;
-          let dy = circles[i].y - circles[j].y;
-          let distance = Math.sqrt(dx * dx + dy * dy);
-          if (distance < circles[i].radius + circles[j].radius) {
-            // Các hình tròn đang va chạm, thực hiện xử lý tại đây
-            // Ví dụ: đổi hướng di chuyển của các hình tròn để tránh va chạm
-            circles[i].vx = -circles[i].vx;
-            circles[i].vy = -circles[i].vy;
-            circles[j].vx = -circles[j].vx;
-            circles[j].vy = -circles[j].vy;
-
-            // Cập nhật lại vị trí mới của các hình tròn
-            circles[i].x += circles[i].vx;
-            circles[i].y += circles[i].vy;
-            circles[j].x += circles[j].vx;
-            circles[j].y += circles[j].vy;
-          }
+    function start() {
+        for (let i = 0; i < 20; i++) {
+            circles.push(createCircle());
         }
-      }
+
+        setInterval(function () {
+            for (let i = 0; i < circles.length; i++) {
+                moveCircle(circles[i]);
+            }
+        }, 1000 / 60);
     }
 
-  }
+    function Circle(x, y, radius) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+        this.vx = Math.random() * 4 - 2;
+        this.vy = Math.random() * 4 - 2;
+    }
+
+    function getRandomHex() {
+        return Math.floor(Math.random() * 255);
+    }
+
+    function getRandomColor() {
+        let red = getRandomHex();
+        let green = getRandomHex();
+        let blue = getRandomHex();
+        return "rgb(" + red + "," + blue + "," + green + ")";
+    }
+
+    function createCircle() {
+        let ctx = document.getElementById("myCanvas").getContext("2d");
+        let radius = Math.floor(Math.random() * 50);
+        let color = getRandomColor();
+        let x = Math.random() * window.innerWidth;
+        let y = Math.random() * window.innerHeight;
+        let circle = new Circle(x, y, radius);
+        circle.color = color;
+        ctx.beginPath();
+        ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = color;
+        ctx.fill();
+        return circle;
+    }
+
+    function moveCircle(circle) {
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        // Tính toán vị trí mới của hình tròn
+        circle.x += circle.vx;
+        circle.y += circle.vy;
+
+        // Để các hình tròn di chuyển thì ta xóa hình tròn cũ và vẽ hình tròn mới ở vị trí tiếp theo
+        ctx.beginPath();
+        ctx.arc(circle.x, circle.y, circle.radius + 3, 0, 2 * Math.PI);
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = getRandomColor();
+        ctx.fill();
+
+        checkCollide(circles);
+        checkOutOfCanvas(circles);
+
+        // Kiểm tra xem hình tròn có đi quá biên của canvas không
+        function checkOutOfCanvas() {
+            if (circle.x - circle.radius < 0) {
+                circle.vx = -circle.vx;
+                circle.x = circle.radius;
+            }
+            if (circle.x + circle.radius > canvas.width) {
+                circle.vx = -circle.vx;
+                circle.x = canvas.width - circle.radius;
+            }
+            if (circle.y - circle.radius < 0) {
+                circle.vy = -circle.vy;
+                circle.y = circle.radius;
+            }
+            if (circle.y + circle.radius > canvas.height) {
+                circle.vy = -circle.vy;
+                circle.y = canvas.height - circle.radius;
+            }
+        }
+
+        // Kiểm tra va chạm giữa các hình tròn
+        function checkCollide(circles) {
+            for (let i = 0; i < circles.length; i++) {
+                for (let j = i + 1; j < circles.length; j++) {
+                    let dx = circles[i].x - circles[j].x;
+                    let dy = circles[i].y - circles[j].y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < circles[i].radius + circles[j].radius) {
+                        // Các hình tròn đang va chạm, thực hiện xử lý tại đây
+                        // Ví dụ: đổi hướng di chuyển của các hình tròn để tránh va chạm
+                        circles[i].vx = -circles[i].vx;
+                        circles[i].vy = -circles[i].vy;
+                        circles[j].vx = -circles[j].vx;
+                        circles[j].vy = -circles[j].vy;
+
+                        // Cập nhật lại vị trí mới của các hình tròn
+                        circles[i].x += circles[i].vx;
+                        circles[i].y += circles[i].vy;
+                        circles[j].x += circles[j].vx;
+                        circles[j].y += circles[j].vy;
+                    }
+                }
+            }
+        }
+
+    }
 
 
 </script>

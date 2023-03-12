@@ -23,19 +23,18 @@
         addObject("obstacle");
     }
 
-    //làm mới hình ảnh liên tục
-    function update() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawObject();
-        ctx.drawImage(img, x, y);
-        checkCollision();
+    function addObject(type) {
+        let object;
+        do {
+            object = {
+                x: Math.floor(Math.random() * (canvas.width - 50)),
+                y: Math.floor(Math.random() * (canvas.height - 50)),
+                type: type
+            };
+        } while ((object.x >= 400 && object.x <= 600) && (object.y >= 200 && object.y <= 300));
+
+        obstacles.push(object);
     }
-    let gameLoop = setInterval(update, 50);
-
-
-    let speed = 10;
-    let isCtrlPressed = false;
-
 
     function drawObject() {
         obstacles.forEach((obstacle) => {
@@ -52,20 +51,8 @@
         });
     }
 
-
-    function addObject(type) {
-        let object;
-        do {
-            object = {
-                x: Math.floor(Math.random() * (canvas.width - 50)),
-                y: Math.floor(Math.random() * (canvas.height - 50)),
-                type: type
-            };
-        } while ((object.x >= 400 && object.x <= 600) && (object.y >= 200 && object.y <= 300));
-
-        obstacles.push(object);
-    }
-
+    let speed = 10;
+    let isCtrlPressed = false;
 
 
 
@@ -107,6 +94,16 @@
         ctx.fillStyle = "black";
         ctx.fillText("Score: " + score, 10, 50);
     }
+
+    //làm mới hình ảnh liên tục
+    function f5() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawObject();
+        ctx.drawImage(img, x, y);
+        checkCollision();
+    }
+    let gameLoop = setInterval(f5, 50);
+
 
 
     document.addEventListener('keydown', function(event) {

@@ -1,10 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
+<script>
+  class Rat {
+    constructor(name, weight, speed) {
+      this.name = name;
+      this.weight = weight;
+      this.speed = speed;
+      this.isAlive = true;
+    }
 
+    makeSound() {
+      console.log('chít chít');
+    }
+  }
+
+  class Cat {
+    constructor(name, weight, maxSpeed) {
+      this.name = name;
+      this.weight = weight;
+      this.maxSpeed = maxSpeed;
+    }
+
+    makeSound() {
+      console.log('meo meo');
+    }
+
+    catch(rat) {
+      if (this.maxSpeed > rat.speed) {
+        console.log(`${this.name} đã bắt được chuột ${rat.name}!`);
+        jerry.makeSound();
+        if (rat.isAlive){
+          console.log(`${rat.name} còn sống, ${this.name} ăn ${rat.name} !!!`);
+          this.weight += rat.weight;
+          rat.isAlive = false;
+          console.log(`Trọng lượng của ${this.name} sau khi ăn: ${this.weight}`);
+          tom.makeSound();
+        }
+      } else {
+        console.log(`${this.name} chạy chậm hơn ${rat.name}, không thể bắt được!`);
+      }
+    }
+  }
+
+  const jerry = new Rat('Jerry', 1, 10);
+  console.log(`Tên chuột: ${jerry.name}`);
+  console.log(`Trọng lượng chuột: ${jerry.weight}`);
+  console.log(`Tốc độ của chuột: ${jerry.speed}`);
+  jerry.makeSound();
+
+  const tom = new Cat('Tom', 5, 15);
+  console.log(`Tên mèo: ${tom.name}`);
+  console.log(`Trọng lượng mèo: ${tom.weight}`);
+  console.log(`Tốc độ tối đa của mèo: ${tom.maxSpeed}`);
+  tom.makeSound();
+
+
+
+  tom.catch(jerry);
+
+</script>
 </body>
 </html>

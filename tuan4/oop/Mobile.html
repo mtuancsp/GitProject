@@ -31,7 +31,7 @@
         }
 
         powerOff() {
-            if(this.isPowerOn === false){
+            if(this.isPowerOn === true){
                 this.isPowerOn = false;
                 console.log(`Tắt nguồn ${this.name}.`);
             } else {
@@ -123,8 +123,9 @@
 
     nokia.draftMessage('Hello Iphone');
     nokia.checkMessageDraft();
-    nokia.sendMessage(iphone, 'Hi Iphone');
     nokia.checkPower();
+    nokia.powerOff();
+    nokia.sendMessage(iphone, 'Hi Iphone');
     nokia.checkSentMessages()
     nokia.chargeBattery();
     nokia.chargeBattery();
