@@ -6,17 +6,20 @@
 </head>
 <body>
 <script>
-  let str = "  This  is a  ,   sample  string  .  ";
-  // str = str.trim();
-  // let words = str.split(/\s+/);
-  // let wordCount = words.length;
-  // console.log(words);
 
-  let words = str.match(/\b\w+\b/g);
-  let wordCount = words.length;
-  console.log(words);
+  let str = "   NgUyễn  văN   an     NaM   ";
 
-  console.log(`Số từ trong chuỗi là: ${wordCount}`);
+  let words = str.trim().toLowerCase().split(/\s+/);
+
+  for (let i = 0; i < words.length; i++) {
+      words[i] = words[i][0].toUpperCase() + words[i].slice(1);
+  }
+
+  let result = words.join(" ");
+
+  console.log(str);
+  console.log(result);
+
 </script>
 </body>
 </html>
